@@ -11,7 +11,9 @@ class TaskManager extends Controller
     // list all tasks
     function listTask() {
         // return all the task in the database as JSON
-        $tasks = Tasks::where("status", 'to be completed')->paginate(7);
+        $tasks = Tasks::where("user_id", auth()->user()->id)
+        ->where("status", 'to be completed')->paginate(7);
+
         return view("welcome", compact('tasks')); 
     }
 
@@ -33,6 +35,7 @@ class TaskManager extends Controller
         $task->title = $request->title;
         $task->description = $request->description;
         $task->deadline = $request->deadline;
+        $task->user_id = auth()->user()->id;
 
         if($task->save()) {
             return redirect(route('home'))
@@ -49,8 +52,11 @@ class TaskManager extends Controller
 
         $task = Tasks::find($id);
         // Tasks- the Model
-        if(Tasks::where('id', $id)->update(['status'=> "Completed"])) {
+        if(Tasks::where("user_id", auth()->user()->id)
+        ->where('id', $id)->update(['status'=> "Completed"])) {
+    
             return redirect(route("home"))->with("success","{$task->title} Task completed.");
+
         }
         return redirect(route('home'))
             ->with('error','Error! try again.');
@@ -61,7 +67,9 @@ class TaskManager extends Controller
 
         $task = Tasks::find($id);
         // Tasks- the Model
-        if(Tasks::where('id', $id)->delete()) {
+        if(Tasks::where("user_id", auth()->user()->id)
+        ->where('id', $id)->delete()) {
+
             return redirect(route("home"))->with("success","{$task->title} Task deleted.");
         }
         return redirect(route('home'))

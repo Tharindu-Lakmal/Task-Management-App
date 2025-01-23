@@ -41,7 +41,9 @@
                 <textarea name="description" class="form-control no-focus" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
 
-            <button class="btn btn-dark rounded-pill px-4 py-3 mt-4 w-100" type="submit">Submit</button>
+            <button class="btn btn-dark px-4 py-3 mt-4 w-100" type="submit" style="border-radius: 10px">
+                Submit
+            </button>
         </form>
     </div>
 
