@@ -17,6 +17,10 @@
             z-index: 2;
         }
 
+        .form-signin input[type="text"] {
+            border-radius: 10px;
+        }
+
         .form-signin input[type="email"] {
             border-radius: 10px;
         }

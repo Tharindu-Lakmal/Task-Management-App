@@ -5,7 +5,9 @@
     <main class="flex" style="margin-block-start:180px; margin-block-end:60px;">
         <div style="padding: 50px; border-radius: 20px; background-color: #caf0f8">
 
-            <h1 class="mt-5">Stay Organized, Stay Productive</h1>
+            <div class="fs-4">Welcome back {{auth()->user()->name}}!</div>
+
+            <h1 class="mt-4">Stay Organized, Stay Productive</h1>
             <p class="lead">Effortlessly manage tasks, collaborate with your team, and boost productivity with our intuitive task management platform.</p>
             
         </div>
